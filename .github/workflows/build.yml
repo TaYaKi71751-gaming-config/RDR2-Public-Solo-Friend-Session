@@ -13,29 +13,13 @@ jobs:
       uses: subosito/flutter-action@main
     - name: Build
       run: |
-        # $length = 128
-        # $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.ToCharArray()
-        # $randomString = -join ((1..$length) | ForEach-Object { $characters | Get-Random })
-
-        # $cert = New-SelfSignedCertificate -Type CodeSigning -Subject "CN=TaYaKi71751" -CertStoreLocation "Cert:\CurrentUser\My"
-        # $password = ConvertTo-SecureString -String "$randomString" -Force -AsPlainText
-        # Export-PfxCertificate -Cert $cert -FilePath "key.pfx" -Password $password
-        # Export-Certificate -Cert $cert -FilePath key.cer
-        openssl req -x509 -newkey rsa:4096 -nodes -keyout openssl.key -out openssl.crt -subj /CN=TaYaKi71751 -days 1000
-        openssl pkcs12 -export -out openssl.pfx -inkey openssl.key -in openssl.crt -nodes -passout pass:""
-
         flutter build windows
-        # flutter pub run msix:create --certificate-path openssl.crt --certificate-password $randomString --install-certificate false
-        flutter pub run msix:create --certificate-path openssl.pfx --certificate-password "" --install-certificate false
     - name: Save build Artifact
       uses: actions/upload-artifact@main
       with:
         name: package (EXE Files)
         path: |
           build\windows\x64\runner\Release\*
-          *.crt
-          *.key
-          *.pfx
     
   # https://github.com/AppImageCrafters/appimage-builder-flutter-example/blob/main/.github/workflows/appimage.yml
   linux-build:
