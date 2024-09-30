@@ -12,7 +12,9 @@ jobs:
     - name: Set up Flutter
       uses: subosito/flutter-action@main
     - name: Build
-      run: flutter pub run msix:create
+      run: |
+        flutter build windows
+        flutter pub run msix:create
     - name: Save build Artifact
       uses: actions/upload-artifact@main
       with:
