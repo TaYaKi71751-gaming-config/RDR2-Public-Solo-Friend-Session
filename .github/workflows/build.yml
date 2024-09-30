@@ -25,7 +25,8 @@ jobs:
 
 
         flutter build windows
-        flutter pub run msix:create --certificate-path openssl.crt --certificate-password $randomString --install-certificate false
+        # flutter pub run msix:create --certificate-path openssl.crt --certificate-password $randomString --install-certificate false
+        flutter pub run msix:create --certificate-path openssl.crt --install-certificate false
     - name: Save build Artifact
       uses: actions/upload-artifact@main
       with:
