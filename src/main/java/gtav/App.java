@@ -19,6 +19,7 @@ public class App extends JFrame {
 		App app = new App();
 		app.repaint();
 		StartupMeta startup_meta = new StartupMeta();
+		BootLauncherFlow boot_launcher_flow = new BootLauncherFlow();
 		Process process = new Process();
 
 		app.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -45,7 +46,7 @@ public class App extends JFrame {
 
 		killButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event){
-				String[] process_name_list = {"GTA5.exe","PlayGTAV.exe"};
+				String[] process_name_list = {"RDR2.exe","PlayRDR2.exe"};
 				for(String process_name:process_name_list){
 					status_label.setText("Killing process " + process_name);
 					try {
@@ -61,10 +62,11 @@ public class App extends JFrame {
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event){
 				String sess_unique = session_unique.getText();
-				String[] process_name_list = {"GTA5.exe","PlayGTAV.exe"};
+				String[] process_name_list = {"RDR2.exe","PlayRDR2.exe"};
 				try {
 					status_label.setText("Applying Private Session");
 					startup_meta.apply(sess_unique);
+					boot_launcher_flow.apply();
 				} catch (Exception e) {
 					e.printStackTrace();
 					status_label.setText(e.getMessage());
@@ -79,17 +81,18 @@ public class App extends JFrame {
 						status_label.setText(e.getMessage());
 					}
 				}
-				status_label.setText("Applied Private Session. Now you can start GTAV");
+				status_label.setText("Applied Private Session. Now you can start Game");
 			}
 		});
 
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event){
 				String sess_unique = session_unique.getText();
-				String[] process_name_list = {"GTA5.exe","PlayGTAV.exe"};
+				String[] process_name_list = {"RDR2.exe","PlayRDR2.exe"};
 				try {
 					status_label.setText("Deleting Private Session");
 					startup_meta.delete();
+					boot_launcher_flow.delete();
 				} catch (Exception e) {
 					e.printStackTrace();
 					status_label.setText(e.getMessage());
@@ -104,7 +107,7 @@ public class App extends JFrame {
 						status_label.setText(e.getMessage());
 					}
 				}
-				status_label.setText("Deleted Private Session. Now you can start GTAV");
+				status_label.setText("Deleted Private Session. Now you can start Game");
 			}
 		});
 
