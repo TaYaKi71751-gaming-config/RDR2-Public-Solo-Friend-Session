@@ -22,7 +22,7 @@ jobs:
         Export-PfxCertificate -Cert $cert -FilePath "key.pfx" -Password $password
 
         flutter build windows
-        flutter pub run msix:create --certificate-path key.pfx --certificate-password $randomString
+        flutter pub run msix:create --certificate-path key.pfx --certificate-password $randomString --install-certificate false
     - name: Save build Artifact
       uses: actions/upload-artifact@main
       with:
