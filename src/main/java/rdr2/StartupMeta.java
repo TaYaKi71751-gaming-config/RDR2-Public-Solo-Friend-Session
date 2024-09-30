@@ -1,4 +1,4 @@
-package gtav;
+package rdr2;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -75,11 +75,11 @@ public class StartupMeta {
 	}
 	public ArrayList<File> getPaths() throws IOException {
 		Find find = new Find();
-		ArrayList<File> play_gtav_paths = find.findFile("PlayRDR2.exe");
+		ArrayList<File> play_rdr2_paths = find.findFile("PlayRDR2.exe");
 		ArrayList<File> startup_meta_paths = new ArrayList<>();
-		for(File play_gtav_path:play_gtav_paths){
-			File gtav_path = Path.getUpperPath(play_gtav_path);
-			File startup_meta_path = new File(String.join(File.separator,new String[]{gtav_path + "","x64","data","startup.meta"}));
+		for(File play_rdr2_path:play_rdr2_paths){
+			File rdr2_path = Path.getUpperPath(play_rdr2_path);
+			File startup_meta_path = new File(String.join(File.separator,new String[]{rdr2_path + "","x64","data","startup.meta"}));
 			if(Path.getUpperPath(startup_meta_path).exists()) {
 				startup_meta_paths.add(startup_meta_path);
 			}

@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>gtav</groupId>
-  <artifactId>gtav_session</artifactId>
+  <groupId>rdr2</groupId>
+  <artifactId>rdr2_session</artifactId>
   <version>1.0</version>
 
-  <name>gtav_public_solo_friend_session</name>
+  <name>rdr2_public_solo_friend_session</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -102,7 +102,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>gtav.App</mainClass>
+              <mainClass>rdr2.App</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -145,7 +145,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>gtav.App</mainClass>
+              <mainClass>rdr2.App</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
