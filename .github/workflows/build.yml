@@ -15,6 +15,7 @@ jobs:
       run: |
         flutter build windows
         echo y | flutter pub run msix:create
+        where /r D:\ test_certificate.pfx
     - name: Save build Artifact
       uses: actions/upload-artifact@main
       with:
