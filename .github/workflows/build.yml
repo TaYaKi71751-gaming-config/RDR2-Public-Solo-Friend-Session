@@ -13,12 +13,8 @@ jobs:
       uses: subosito/flutter-action@main
     - name: Build
       run: |
-        $length = 128
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.ToCharArray()
-        $randomString = -join ((1..$length) | ForEach-Object { $characters | Get-Random })
-
         $cert = New-SelfSignedCertificate -Type CodeSigning -Subject "CN=TaYaKi71751" -CertStoreLocation "Cert:\CurrentUser\My"
-        $password = ConvertTo-SecureString -String "$randomString" -Force -AsPlainText
+        $password = ConvertTo-SecureString -String "TaYaKi71751" -Force -AsPlainText
         Export-PfxCertificate -Cert $cert -FilePath "key.pfx" -Password $password
 
         flutter build windows
