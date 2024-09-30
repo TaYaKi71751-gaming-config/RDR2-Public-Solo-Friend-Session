@@ -17,7 +17,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: package (EXE Files)
-        path: './*.exe'
+        path: 'build\windows\x64\runner\Release\*.exe'
     
   # https://github.com/AppImageCrafters/appimage-builder-flutter-example/blob/main/.github/workflows/appimage.yml
   linux-build:
