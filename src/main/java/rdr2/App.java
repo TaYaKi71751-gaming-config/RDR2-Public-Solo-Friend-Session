@@ -130,7 +130,7 @@ public class App extends JFrame {
 		app.add(randomButton);
 		app.add(status_label);
 
-		app.setTitle("GTA V Public Solo Friend Session");
+		app.setTitle("RDR2 Public Solo Friend Session");
 		app.setVisible(true);
 	}
 }
