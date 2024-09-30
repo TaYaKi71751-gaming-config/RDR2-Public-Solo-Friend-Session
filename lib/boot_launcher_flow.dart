@@ -345,4 +345,18 @@ class BootLauncherFlow {
       await file.writeAsBytes(getBytes(unique_session_code));
     }
   }
+
+  static Future<void> delete(List<Directory> game_directories) async {
+    for (Directory game_directory in game_directories) {
+      File file;
+      if (Platform.isWindows) {
+        file = File(game_directory.path + '\\x64\\boot_launcher_flow.ymt');
+      } else if (Platform.isLinux || Platform.isMacOS) {
+        file = File(game_directory.path + '/x64/boot_launcher_flow.ymt');
+      } else {
+        throw Error();
+      }
+      await file.delete();
+    }
+  }
 }

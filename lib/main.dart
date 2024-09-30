@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:rdr2_session/boot_launcher_flow.dart';
 import 'package:rdr2_session/find.dart';
 import 'package:rdr2_session/process.dart';
 import 'package:rdr2_session/startup_meta.dart';
@@ -77,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _status = 'Applying';
     });
     await StartupMeta.apply(game_directories, passcode.text);
+    await BootLauncherFlow.apply(game_directories, passcode.text);
     await _kill();
 
     setState(() {
@@ -97,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _status = 'Deleting';
     });
     await StartupMeta.delete(game_directories);
+    await BootLauncherFlow.delete(game_directories);
     await _kill();
 
     setState(() {
@@ -140,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Icon(Icons.shuffle),
             ),
             FloatingActionButton(
-              onPressed: _apply,
+              onPressed: _kill,
               tooltip: 'Kill',
               child: const Icon(Icons.close),
             ),

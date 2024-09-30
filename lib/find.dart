@@ -50,11 +50,10 @@ class Find {
     List<File> list = List.empty(growable: true);
     if (Platform.isWindows) {
       List<String> drives =
-          (await WindowsDrive.getDrives()).toString().split('\n');
+          (await WindowsDrive.getDrives()).toString().replaceAll(RegExp("[^A-Za-z]"),"").split('\n');
       for (String drive in drives) {
-        for (String line in ((await Process.run(
-                    'cmd.exe', ['/c', 'where', '$drive\\', '$filename'],
-                    stdoutEncoding: const SystemEncoding()))
+        for (String line in (Process.runSync('cmd.exe', ['/c', 'where /r $drive:\\ $filename'],
+                    stdoutEncoding: const SystemEncoding())
                 .stdout as String)
             .split('\n')) {
           if (line.length == 0) {
