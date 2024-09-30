@@ -29,8 +29,7 @@ jobs:
         name: package (EXE Files)
         path: |
           build\windows\x64\runner\Release\*
-          keypair.pem
-          publickey.crt
+          key.pfx
     
   # https://github.com/AppImageCrafters/appimage-builder-flutter-example/blob/main/.github/workflows/appimage.yml
   linux-build:
