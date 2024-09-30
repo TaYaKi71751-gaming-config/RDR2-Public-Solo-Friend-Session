@@ -18,7 +18,11 @@ jobs:
         New-SelfSignedCertificate -Type Custom -Subject "CN=Contoso Software, O=Contoso Corporation, C=US" -KeyUsage DigitalSignature -FriendlyName "TaYaKi71751" -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
         $Thumbprint=Get-ChildItem -Path Cert:\CurrentUser\My\
         $Thumbprint=$Thumbprint.Thumbprint
-        Export-PfxCertificate -cert "Cert:\CurrentUser\My\$Thumbprint" -FilePath .\Cert\test_certificate.pfx -ProtectTo Administrators
+        $length = 4096
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        $randomString = -join ((1..$length) | ForEach-Object { $characters | Get-Random })
+        $password = ConvertTo-SecureString -String $randomString -Force -AsPlainText 
+        Export-PfxCertificate -cert "Cert:\CurrentUser\My\$Thumbprint" -FilePath .\Cert\test_certificate.pfx -Password $password
         flutter build windows
         flutter pub run msix:create --certificate-path test_certificate.pfx
     - name: Save build Artifact
