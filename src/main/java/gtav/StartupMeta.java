@@ -11,24 +11,59 @@ public class StartupMeta {
 		char CR = 0x0d;
 		char LF = 0x0a;
 		String[] prefixes = {
-			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-			"<CDataFileMgr__ContentsOfDataFileXml>",
-			" <disabledFiles />",
-			" <includedXmlFiles itemType=\"CDataFileMgr__DataFileArray\" />",
-			" <includedDataFiles />",
-			" <dataFiles itemType=\"CDataFileMgr__DataFile\">",
-			"  <Item>",
-			"   <filename>platform:/data/cdimages/scaleform_platform_pc.rpf</filename>",
-			"   <fileType>RPF_FILE</fileType>",
-			"  </Item>",
-			"  <Item>",
-			"   <filename>platform:/data/cdimages/scaleform_frontend.rpf</filename>",
-			"   <fileType>RPF_FILE_PRE_INSTALL</fileType>",
-			"  </Item>",
-			" </dataFiles>",
-			" <contentChangeSets itemType=\"CDataFileMgr__ContentChangeSet\" />",
-			" <patchFiles />",
-			"</CDataFileMgr__ContentsOfDataFileXml>"
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+"<CDataFileMgr__ContentsOfDataFileXml>",
+" <disabledFiles />",
+" <includedXmlFiles itemType=\"CDataFileMgr__DataFileArray\" />",
+" <includedDataFiles />",
+" <dataFiles itemType=\"CDataFileMgr__DataFile\">",
+"  <Item>",
+"   <filename>platform:/data/cdimages/scaleform_platform_pc.rpf</filename>",
+"   <fileType>RPF_FILE</fileType>",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/data/ui/value_conversion.rpf</filename>",
+"   <fileType>RPF_FILE</fileType>",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/data/ui/widgets.rpf</filename>",
+"   <fileType>RPF_FILE</fileType>",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/textures/ui/ui_photo_stickers.rpf</filename>",
+"   <fileType>RPF_FILE</fileType>",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/textures/ui/ui_platform.rpf</filename>",
+"   <fileType>RPF_FILE</fileType>",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/data/ui/stylesCatalog</filename>",
+"   <fileType>aWeaponizeDisputants</fileType> <!-- collision -->",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/data/cdimages/scaleform_frontend.rpf</filename>",
+"   <fileType>RPF_FILE_PRE_INSTALL</fileType>",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/textures/ui/ui_startup_textures.rpf</filename>",
+"   <fileType>RPF_FILE</fileType>",
+"  </Item>",
+"  <Item>",
+"   <filename>platform:/data/ui/startup_data.rpf</filename>",
+"   <fileType>RPF_FILE</fileType>",
+"  </Item>",
+"  <Item>",
+"    <filename>platform:/boot_launcher_flow.#mt</filename>",
+"    <fileType>STREAMING_FILE</fileType>",
+"    <registerAs>boot_flow/boot_launcher_flow</registerAs>",
+"    <overlay value=\"false\" />",
+"    <patchFile value=\"false\" />",
+"  </Item>",
+" </dataFiles>",
+" <contentChangeSets itemType=\"CDataFileMgr__ContentChangeSet\" />",
+" <patchFiles />",
+"</CDataFileMgr__ContentsOfDataFileXml>"
 		};
 		String session_unique_wrapped = "<!-- " + session_unique + " -->";
 		String result = "";
@@ -40,7 +75,7 @@ public class StartupMeta {
 	}
 	public ArrayList<File> getPaths() throws IOException {
 		Find find = new Find();
-		ArrayList<File> play_gtav_paths = find.findFile("PlayGTAV.exe");
+		ArrayList<File> play_gtav_paths = find.findFile("PlayRDR2.exe");
 		ArrayList<File> startup_meta_paths = new ArrayList<>();
 		for(File play_gtav_path:play_gtav_paths){
 			File gtav_path = Path.getUpperPath(play_gtav_path);
