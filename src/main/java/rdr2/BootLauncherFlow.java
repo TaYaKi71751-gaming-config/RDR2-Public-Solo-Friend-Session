@@ -340,31 +340,31 @@ public class BootLauncherFlow {
 	public ArrayList<File> getPaths() throws IOException {
 		Find find = new Find();
 		ArrayList<File> play_rdr2_paths = find.findFile("PlayRDR2.exe");
-		ArrayList<File> startup_meta_paths = new ArrayList<>();
+		ArrayList<File> boot_launcher_flow_paths = new ArrayList<>();
 		for(File play_rdr2_path:play_rdr2_paths){
 			File rdr2_path = Path.getUpperPath(play_rdr2_path);
-			File startup_meta_path = new File(String.join(File.separator,new String[]{rdr2_path + "","x64","boot_launcher_flow.ymt"}));
-			if(Path.getUpperPath(startup_meta_path).exists()) {
-				startup_meta_paths.add(startup_meta_path);
+			File boot_launcher_flow_path = new File(String.join(File.separator,new String[]{rdr2_path + "","x64","boot_launcher_flow.ymt"}));
+			if(Path.getUpperPath(boot_launcher_flow_path).exists()) {
+				boot_launcher_flow_paths.add(boot_launcher_flow_path);
 			}
 		}
-		return startup_meta_paths;
+		return boot_launcher_flow_paths;
 	}
-	public void apply(String session_unique) throws IOException {
-		StartupMeta startup_meta = new StartupMeta();
-		String str = startup_meta.getString(session_unique);
-		ArrayList<File> startup_meta_paths = startup_meta.getPaths();
-		for(File startup_meta_path: startup_meta_paths){
-			BufferedWriter writer = new BufferedWriter(new FileWriter(startup_meta_path));
+	public void apply() throws IOException {
+		BootLauncherFlow boot_launcher_flow = new BootLauncherFlow();
+		String str = boot_launcher_flow.getString();
+		ArrayList<File> boot_launcher_flow_paths = boot_launcher_flow.getPaths();
+		for(File boot_launcher_flow_path: boot_launcher_flow_paths){
+			BufferedWriter writer = new BufferedWriter(new FileWriter(boot_launcher_flow_path));
 			writer.write(str);
 			writer.close();
 		}
 	}
 	public void delete() throws IOException {
-		StartupMeta startup_meta = new StartupMeta();
-		ArrayList<File> startup_meta_paths = startup_meta.getPaths();
-		for(File startup_meta_path: startup_meta_paths){
-			startup_meta_path.delete();
+		BootLauncherFlow boot_launcher_flow = new BootLauncherFlow();
+		ArrayList<File> boot_launcher_flow_paths = boot_launcher_flow.getPaths();
+		for(File boot_launcher_flow_path: boot_launcher_flow_paths){
+			boot_launcher_flow_path.delete();
 		}
 	}
 }
