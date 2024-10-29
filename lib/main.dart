@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:rdr2_session/boot_launcher_flow.dart';
@@ -42,6 +41,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final passcode = TextEditingController();
   String _status = '';
+		
+		Future<void> _catch(dynamic e) async {
+			setState(() {
+				_status = e.toString();
+			});
+		}
 
   Future<void> _random() async {
     var helper = RsaKeyHelper();
@@ -53,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _kill() async {
+			try {
     List<String> processList = 'PlayRDR2.exe,RDR2.exe'.split(',');
     for (String process in processList) {
       setState(() {
@@ -63,9 +69,13 @@ class _MyHomePageState extends State<MyHomePage> {
         _status = 'Killed $process';
       });
     }
+			} catch(e) {
+				_status = e.toString();
+			}
   }
 
   Future<void> _apply() async {
+			try {
     setState(() {
       _status = 'Finding Game Paths';
     });
@@ -84,9 +94,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _status = 'Applied';
     });
+			} catch(e) {
+				_status = e.toString();
+			}
   }
 
   Future<void> _delete() async {
+			try {
     setState(() {
       _status = 'Finding Game Paths';
     });
@@ -105,6 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _status = 'Deleted';
     });
+			} catch(e) {
+				_status = e.toString();
+			}
   }
 
   @override
